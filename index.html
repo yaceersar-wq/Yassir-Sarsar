@@ -1,29 +1,22 @@
-<!DOCTYPE html>
+ml>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yassir Sarsar - Projects</title>
+    <title>Yassir Sarsar | Data Analyst Portfolio</title>
     
-    <!-- Google Fonts: Anton & Inter for clean body copy -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
     <style>
-        /* --- PSYCHEDELIC HEATMAP GRADIENT & THEME VARIABLES --- */
+        /* --- Y2K ACID CHROME / LIQUID METAL THEME VARIABLES --- */
         :root {
-            :root {
-            --heatmap-gradient: linear-gradient(
-                135deg,
-                #230042 0%,   /* Deep velvet night */
-                #5B1487 25%,  /* Rich royal purple */
-                #008A62 50%,  /* Mellowed emerald-teal */
-                #8FA900 75%,  /* Deepened olive-lime */
-                #C26A00 100%  /* Burnt sunset orange */
-            );
-            --bg-dark: #08020F; /* Ultra-dark rich base for maximum focus */
+            --sky-bg: linear-gradient(to bottom, #1e70e0 0%, #6ba4f2 60%, #a4c7f5 100%);
+            --acid-green: #bfff00; 
+            --bg-dark: #070d19;
             --text-light: #ffffff;
+            --chrome-img: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop');
         }
 
         * {
@@ -33,11 +26,27 @@
         }
 
         body {
-            background-color: var(--bg-dark);
+            background: var(--sky-bg);
+            background-attachment: fixed;
             color: var(--text-light);
             font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
+            min-height: 100vh;
             padding: 4vw;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Ambient vector software background grid */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(191, 255, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(191, 255, 0, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
         }
 
         /* --- ANTON TYPE STYLING --- */
@@ -45,36 +54,71 @@
             font-family: 'Anton', sans-serif;
             text-transform: uppercase;
             font-weight: 900;
-            letter-spacing: -0.04em;
-            line-height: 0.85;
+            letter-spacing: -0.02em;
+            line-height: 0.9;
         }
 
         /* --- HEADER SECTION --- */
         header {
-            margin-bottom: 8vw;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+            position: relative;
+            z-index: 10;
+            margin-bottom: 6vw;
         }
 
         .brand-title {
-            font-size: clamp(3.5rem, 8vw, 10rem);
-            background: var(--heatmap-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
+            font-size: clamp(4rem, 10vw, 12rem);
+            color: var(--text-light);
+            text-shadow: 0 10px 30px rgba(0, 30, 100, 0.2);
         }
 
         .subtitle {
-            font-size: clamp(1rem, 1.5vw, 1.5rem);
-            color: #00A878;
+            font-size: 0.9rem;
+            color: var(--acid-green);
             font-weight: 600;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- DATA INSIGHTS SECTION (Chloe Example Metrics) --- */
+        .insights-bar {
+            position: relative;
+            z-index: 10;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 6vw;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 16px;
+        }
+
+        @media (min-width: 768px) {
+            .insights-bar {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .insight-item h4 {
+            font-size: clamp(2rem, 3vw, 4rem);
+            color: var(--text-light);
+        }
+
+        .insight-item p {
+            font-size: 0.8rem;
+            color: var(--acid-green);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0.25rem;
         }
 
         /* --- PROJECTS GRID --- */
         .projects-grid {
+            position: relative;
+            z-index: 10;
             display: grid;
             grid-template-columns: 1fr;
             gap: 4vw;
@@ -87,136 +131,250 @@
             }
         }
 
-        /* --- THERMAL HEATMAP CARDS --- */
+        /* --- LIQUID CHROME CARDS --- */
         .project-card {
             position: relative;
-            background: #150624;
-            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 24px;
             overflow: hidden;
-            aspect-ratio: 4 / 3;
+            aspect-ratio: 1.1 / 1;
             display: flex;
             align-items: flex-end;
             padding: 2.5rem;
-            text-decoration: none;
-            color: var(--text-light);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(191, 255, 0, 0.2); 
         }
 
-        /* The Heatmap Visual Layer */
         .project-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--heatmap-gradient);
-            opacity: 0.45;
-            mix-blend-mode: color-dodge; /* Creates the vivid, saturated psychedelic edge effects */
-            transition: opacity 0.4s ease, transform 0.4s ease;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: var(--chrome-img);
+            background-size: cover;
+            background-position: center;
+            filter: contrast(180%) brightness(100%) saturate(120%);
+            mix-blend-mode: luminosity; 
+            opacity: 0.75;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
             z-index: 1;
         }
 
-        /* Noise overlay to give it a gritty, premium finish */
-        .project-card::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3联%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.15;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        /* Hover States */
         .project-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-5px);
+            border-color: var(--acid-green);
         }
 
         .project-card:hover::before {
-            opacity: 0.85;
             transform: scale(1.05);
+            mix-blend-mode: normal; 
+            opacity: 0.95;
         }
 
-        /* --- LARGE OVERLAID TYPE --- */
         .project-info {
             position: relative;
-            z-index: 3; /* Sits completely over the image layers */
+            z-index: 3;
+            background: rgba(0, 0, 0, 0.85); 
+            padding: 1.5rem;
+            border-radius: 14px;
             width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
         }
 
         .project-number {
-            font-size: clamp(1rem, 1.2vw, 1.5rem);
-            color: #A6C400;
-            margin-bottom: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--acid-green);
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.25rem;
             display: block;
         }
 
         .project-name {
-            font-size: clamp(2rem, 4.5vw, 5rem);
+            font-size: clamp(1.8rem, 3vw, 3.5rem);
             color: #ffffff;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-            word-wrap: break-word;
         }
 
-        .project-tags {
-            margin-top: 1rem;
-            font-size: 0.85rem;
-            letter-spacing: 0.05em;
+        /* --- SMOOTH SLIDE-UP CASE STUDY MODAL --- */
+        .case-study-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-dark);
+            z-index: 100;
+            display: none; 
+            overflow-y: auto;
+            transform: translateY(100%); 
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .case-study-modal.active {
+            display: block;
+            transform: translateY(0);
+        }
+
+        .close-btn {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
             text-transform: uppercase;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            z-index: 110;
+            backdrop-filter: blur(10px);
+        }
+
+        .close-btn:hover {
+            background: var(--acid-green);
+            color: #000;
+            border-color: var(--acid-green);
+        }
+
+        .modal-hero {
+            width: 100%;
+            height: 60vh;
+            background-image: var(--chrome-img);
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            padding: 4vw;
+            position: relative;
+        }
+
+        .modal-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 50%;
+            background: linear-gradient(transparent, var(--bg-dark));
+        }
+
+        .modal-title-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+
+        .modal-content {
+            padding: 6vw 4vw;
+            max-width: 900px;
+        }
+
+        .modal-content p {
+            font-size: clamp(1.1rem, 2vw, 1.6rem);
+            line-height: 1.6;
             color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+            font-weight: 300;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header / Branding -->
     <header>
-        <span class="subtitle">Selected Work Portfolio</span>
-    <h1 class="brand-title anton-heavy">Yassir Sarsar</h1>
+        <span class="subtitle">Data Insights & Analytics Portfolio</span>
+        <h1 class="brand-title anton-heavy">Yassir Sarsar</h1>
     </header>
 
-    <!-- Interactive Projects Workspace -->
+    <section class="insights-bar">
+        <div class="insight-item">
+            <h4 class="anton-heavy">04+</h4>
+            <p>Years Analyzing Data</p>
+        </div>
+        <div class="insight-item">
+            <h4 class="anton-heavy">99%</h4>
+            <p>Model Accuracy</p>
+        </div>
+        <div class="insight-item">
+            <h4 class="anton-heavy">SQL</h4>
+            <p>Database Architecture</p>
+        </div>
+        <div class="insight-item">
+            <h4 class="anton-heavy">15M+</h4>
+            <p>Rows Processed</p>
+        </div>
+    </section>
+
     <main class="projects-grid">
 
-        <!-- Project 01 -->
-        <a href="#" class="project-card">
+        <div class="project-card" onclick="openProject('Thermal Distortion', '01 // DATA VISUALIZATION', 'A deep architectural look into spatial mapping metrics. Processing complex multivariate patterns into responsive, dynamic visual interfaces designed for immediate extraction of high-level business intelligence.')">
             <div class="project-info">
-                <span class="project-number">01 // VISUAL DIRECTIVE</span>
-                <h2 class="project-name anton-heavy">Thermal<br>Distortion</h2>
-                <div class="project-tags">Creative Direction / WebGL Development</div>
+                <span class="project-number">01 // DATA VISUALIZATION</span>
+                <h2 class="project-name anton-heavy">Thermal Distortion</h2>
             </div>
-        </a>
+        </div>
 
-        <!-- Project 02 -->
-        <a href="#" class="project-card">
+        <div class="project-card" onclick="openProject('Psychedelic Shift', '02 // PREDICTIVE MODELING', 'Building statistical models focused on cluster migration and variable shifts over time. Deploying Python-based workflows to capture nonlinear data fluctuations inside complex market frameworks.')">
             <div class="project-info">
-                <span class="project-number">02 // BRANDING</span>
-                <h2 class="project-name anton-heavy">Psychedelic<br>Shift</h2>
-                <div class="project-tags">Identity Design / Motion Graphics</div>
+                <span class="project-number">02 // PREDICTIVE MODELING</span>
+                <h2 class="project-name anton-heavy">Psychedelic Shift</h2>
             </div>
-        </a>
+        </div>
 
-        <!-- Project 03 -->
-        <a href="#" class="project-card">
+        <div class="project-card" onclick="openProject('Saturated Impact', '03 // QUANTITATIVE RESEARCH', 'Measuring key performance parameters and processing high-throughput dataset variations. Isolating anomalies and structuring raw inputs into cohesive pipeline frameworks.')">
             <div class="project-info">
-                <span class="project-number">03 // STRATEGY</span>
-                <h2 class="project-name anton-heavy">Saturated<br>Impact</h2>
-                <div class="project-tags">UI/UX Systems / Digital Strategy</div>
+                <span class="project-number">03 // QUANTITATIVE RESEARCH</span>
+                <h2 class="project-name anton-heavy">Saturated Impact</h2>
             </div>
-        </a>
+        </div>
 
-        <!-- Project 04 -->
-        <a href="#" class="project-card">
+        <div class="project-card" onclick="openProject('Chroma Velocity', '04 // BUSINESS INTELLIGENCE', 'Developing automated reporting infrastructure designed around fast-moving system architectures. Transitioning legacy databases into high-performance visual dashboards.')">
             <div class="project-info">
-                <span class="project-number">04 // EXPERIMENTAL</span>
-                <h2 class="project-name anton-heavy">Chroma<br>Velocity</h2>
-                <div class="project-tags">Experiential / Installation</div>
+                <span class="project-number">04 // BUSINESS INTELLIGENCE</span>
+                <h2 class="project-name anton-heavy">Chroma Velocity</h2>
             </div>
-        </a>
+        </div>
 
     </main>
 
-</body>
-</html>
+    <div id="projectModal" class="case-study-modal">
+        <button class="close-btn" onclick="closeProject()">Close Index ✕</button>
+        <div class="modal-hero">
+            <div class="modal-title-wrapper">
+                <span id="modalMeta" class="subtitle" style="margin-bottom:1rem;">PROJECT META</span>
+                <h1 id="modalTitle" class="brand-title anton-heavy">Project Title</h1>
+            </div>
+        </div>
+        <div class="modal-content">
+            <p id="modalDesc">Detailed case study body text details appear dynamically here...</p>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('projectModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalMeta = document.getElementById('modalMeta');
+        const modalDesc = document.getElementById('modalDesc');
+
+        function openProject(title, meta, description) {
+            modalTitle.innerText = title;
+            modalMeta.innerText = meta;
+            modalDesc.innerText = description;
+
+            modal.classList.add('active');
+            
+            setTimeout(() => {
+                modal.style.transform = "translateY(0)";
+                document.body.style.overflow = "hidden"; 
+            }, 50);
+        }
+
+        function closeProject() {
+            modal.style.transform = "translateY(100%)";
+            document.body.style.overflow = "auto"; 
+
+            setTimeout(() => {
+                modal.classList.remove('active');
+            }, 600);
+        }
+    </script>
