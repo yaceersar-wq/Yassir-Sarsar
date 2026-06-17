@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Projects</title>
+    
+    <!-- Google Fonts: Anton & Inter for clean body copy -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- PSYCHEDELIC HEATMAP GRADIENT & THEME VARIABLES --- */
+        :root {
+            --heatmap-gradient: linear-gradient(
+                135deg,
+                #2D0057 0%,   /* Deep purple */
+                #6A1B9A 25%,  /* Purple */
+                #00A878 50%,  /* Teal green */
+                #A6C400 75%,  /* Lime green */
+                #D87A00 100%  /* Orange */
+            );
+            --bg-dark: #0b0114;
+            --text-light: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            padding: 4vw;
+        }
+
+        /* --- ANTON TYPE STYLING --- */
+        .anton-heavy {
+            font-family: 'Anton', sans-serif;
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            line-height: 0.85;
+        }
+
+        /* --- HEADER SECTION --- */
+        header {
+            margin-bottom: 8vw;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .brand-title {
+            font-size: clamp(3.5rem, 8vw, 10rem);
+            background: var(--heatmap-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 1.5vw, 1.5rem);
+            color: #00A878;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* --- PROJECTS GRID --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4vw;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* --- THERMAL HEATMAP CARDS --- */
+        .project-card {
+            position: relative;
+            background: #150624;
+            border-radius: 4px;
+            overflow: hidden;
+            aspect-ratio: 4 / 3;
+            display: flex;
+            align-items: flex-end;
+            padding: 2.5rem;
+            text-decoration: none;
+            color: var(--text-light);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* The Heatmap Visual Layer */
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--heatmap-gradient);
+            opacity: 0.45;
+            mix-blend-mode: color-dodge; /* Creates the vivid, saturated psychedelic edge effects */
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            z-index: 1;
+        }
+
+        /* Noise overlay to give it a gritty, premium finish */
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3联%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.15;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* Hover States */
+        .project-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .project-card:hover::before {
+            opacity: 0.85;
+            transform: scale(1.05);
+        }
+
+        /* --- LARGE OVERLAID TYPE --- */
+        .project-info {
+            position: relative;
+            z-index: 3; /* Sits completely over the image layers */
+            width: 100%;
+        }
+
+        .project-number {
+            font-size: clamp(1rem, 1.2vw, 1.5rem);
+            color: #A6C400;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .project-name {
+            font-size: clamp(2rem, 4.5vw, 5rem);
+            color: #ffffff;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            word-wrap: break-word;
+        }
+
+        .project-tags {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.7);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Branding -->
+    <header>
+        <span class="subtitle">Selected Work Portfolio</span>
+        <h1 class="brand-title anton-heavy">Chloe Breslin</h1>
+    </header>
+
+    <!-- Interactive Projects Workspace -->
+    <main class="projects-grid">
+
+        <!-- Project 01 -->
+        <a href="#" class="project-card">
+            <div class="project-info">
+                <span class="project-number">01 // VISUAL DIRECTIVE</span>
+                <h2 class="project-name anton-heavy">Thermal<br>Distortion</h2>
+                <div class="project-tags">Creative Direction / WebGL Development</div>
+            </div>
+        </a>
+
+        <!-- Project 02 -->
+        <a href="#" class="project-card">
+            <div class="project-info">
+                <span class="project-number">02 // BRANDING</span>
+                <h2 class="project-name anton-heavy">Psychedelic<br>Shift</h2>
+                <div class="project-tags">Identity Design / Motion Graphics</div>
+            </div>
+        </a>
+
+        <!-- Project 03 -->
+        <a href="#" class="project-card">
+            <div class="project-info">
+                <span class="project-number">03 // STRATEGY</span>
+                <h2 class="project-name anton-heavy">Saturated<br>Impact</h2>
+                <div class="project-tags">UI/UX Systems / Digital Strategy</div>
+            </div>
+        </a>
+
+        <!-- Project 04 -->
+        <a href="#" class="project-card">
+            <div class="project-info">
+                <span class="project-number">04 // EXPERIMENTAL</span>
+                <h2 class="project-name anton-heavy">Chroma<br>Velocity</h2>
+                <div class="project-tags">Experiential / Installation</div>
+            </div>
+        </a>
+
+    </main>
+
+</body>
+</html>
